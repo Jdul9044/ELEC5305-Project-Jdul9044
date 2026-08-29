@@ -7,15 +7,15 @@ fs = 48e3 #Hz
 c = 343 #m/s
 mic_num = 8
 spacing = 0.5 #m [c/(2d) = max freq -> 343 with 0.5m is 343 Hz]
-duration = 100 #seconds
+duration = 30 #seconds
 noise_level = 1 # amplitude
-azi_deg = 30 #deg
-azi = np.deg2rad(azi_deg) #rad
+azi_deg = 120 #deg
 ele_deg = 0 #deg
-ele = np.deg2rad(ele_deg) #rad
 mic_pos = np.zeros((mic_num,3))
 mic_pos[:, 0] = np.arange(mic_num) * spacing
 ################################################
+azi = np.deg2rad(azi_deg) #rad
+ele = np.deg2rad(ele_deg) #rad
 
 N = int(fs * duration)
 n = np.arange(N)
@@ -48,8 +48,7 @@ audio += (noise_level*np.random.randn(N, mic_num))
 audio = np.clip(audio,-1,1)
 
 for i in range(mic_num):
-    audio[:,i]
-    audio_pcm = np.int16(audio * 2**15-1)
+    audio_channel = audio[:,i]
+    audio_pcm = np.int16(audio_channel * 2**15-1)
     audio_pcm.tofile("microphone" + str(i) + ".pcm")
-    
     
