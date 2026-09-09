@@ -122,7 +122,7 @@ tau = np.dot(mic_pos,u) / c
 # Beamforming
 Y = np.zeros((len(freq_bins),len(time_bins)), dtype=np.complex128)
         
-# MVDR STATIONARY
+# MVDR NONSTATIONARY
 window_len = 20
 # import numba
 
