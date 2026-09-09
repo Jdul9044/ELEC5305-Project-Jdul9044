@@ -140,14 +140,14 @@ for ff in range(len(freq_bins)):
         
         #short version
         # Y[ff, tt] = 1 / (np.dot(np.conj(steering_vect).T, Rinv, steering_vect))
-        Y[ff, tt] = 1/(steering_vect.conj().T @ Rinv @ steering_vect).squeeze()
+        # Y[ff, tt] = 1/(steering_vect.conj().T @ Rinv @ steering_vect).squeeze()
         
         # long version
-        # w = (Rinv @ steering_vect)/(steering_vect.conj().T @ Rinv @ steering_vect)                
-        # Y[ff, tt] = np.dot(np.conj(w).flatten(), spectrogram_array[:, ff, tt])
+        w = (Rinv @ steering_vect)/(steering_vect.conj().T @ Rinv @ steering_vect)                
+        Y[ff, tt] = np.dot(np.conj(w).flatten(), spectrogram_array[:, ff, tt])
         
-# Y_dB = 20 * np.log10(np.abs(Y)) change this for long version
-Y_dB = np.log10(np.abs(Y)) # use for short version
+Y_dB = 20 * np.log10(np.abs(Y)) # change this for long version
+#Y_dB = np.log10(np.abs(Y)) # use for short version
 
     
 #Check Beamformer Output
